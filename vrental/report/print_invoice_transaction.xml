@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_transaction_pdf">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+            <!-- <t t-call="report.external_layout"> -->
+                <div class="page">
+                    <h2><b>TRANSACTION INVOICE</b></h2>
+                    <t t-foreach="docs" t-as="d">
+                        <div class="row">
+                            <div class="col-4">Order Code :</div>
+                            <div class="col-8"><span t-field="d.name"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Name       :</div>
+                            <div class="col-8"><span t-field="d.customer_name"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Transaction Date :</div>
+                            <div class="col-8"><span t-field="d.start_date"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Total    Rp  :</div>
+                            <div class="col-8"><span t-field="d.total_cost"/></div>
+                        </div>
+                        <div class="row">
+                            <t t-foreach="d.transactiondetail_ids" t-as="ds">
+                                <div class="col-4">
+                                    VR List     :
+                                </div>
+                                <div class="col-8">
+                                    <span t-field="ds.vr_id.name"/>
+                                </div>
+                            </t>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">   &#160;  </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

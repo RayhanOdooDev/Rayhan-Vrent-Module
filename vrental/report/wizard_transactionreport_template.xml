@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="vrental.wizard_report_transactionreport_pdf_tmp">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+            <!-- <t t-call="report.external_layout"> -->
+                <div class="page">
+                    <h2><b>TRANSACTION INVOICE</b></h2>
+                    <div class="row">    
+                        <div class="col-4">Name : </div>
+                        <div class="col-8">
+                            <t t-esc="form['customer_id'][1]"/>
+                        </div>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span>Transaction Note</span>
+                                </th>
+                                 <th>
+                                    <span>Transaction Date</span>
+                                </th>
+                                 <th>
+                                    <span>Total Payment</span>
+                                </th>
+                            </tr>
+                            <t t-foreach="transaction" t-as="line">
+                                <tr>
+                                    <td>
+                                        <span t-esc="line['name']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['start_date']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['total_cost']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </thead>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

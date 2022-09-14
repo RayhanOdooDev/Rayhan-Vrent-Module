@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- vrental.vrlist tree view -->
+    <record id="vrental_vrlist_view_tree" model="ir.ui.view">
+        <field name="name">VR List</field>
+        <field name="model">vrental.vrlist</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="vrcategory_id"/>
+                <field name="price"/>
+                <field name="stock"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="vrental_vrlist_view_kanban" model="ir.ui.view">
+        <field name="name">VR Catalogue</field>
+        <field name="model">vrental.vrlist</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="vrcategory_id"/>
+                <field name="price"/>
+                <field name="stock"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <div class="o_kanban_image mr-1">
+                                    <field name="image" widget="image" class="oe_left"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                <div class="o_kanban_record_top mb-0">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>
+                                        Stock: <field name="stock"/>
+                                    </strong>
+                                </div>
+                                <div name="product_lst_price" class="mt-1">
+                                    Price: Rp.<field name="price" widget="monetary"/>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- vrental.vrlist form view -->
+    <record id="vrental_vrlist_view_form" model="ir.ui.view">
+        <field name="name">Form Equipment</field>
+        <field name="model">vrental.vrlist</field>
+        <field name="arch" type="xml">
+            <form string="Equipment VR">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="image" widget="image"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="vrcategory_id"/>
+                            <field name="price"/>
+                            <field name="stock"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- vrental.vr action window -->
+    <record id="vrental_vrlist_action" model="ir.actions.act_window">
+        <field name="name">VR List</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vrental.vrlist</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="vrental_vrlist_menu_act" 
+              name="VR List" 
+              parent="vrental_vr_menu_categ"
+              action="vrental_vrlist_action" 
+              sequence="10"/>
+
+</odoo>

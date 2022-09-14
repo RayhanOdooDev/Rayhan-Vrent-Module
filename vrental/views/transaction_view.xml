@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- vrental.transaction tree view -->
+    <record id="vrental_transaction_view_tree" model="ir.ui.view">
+        <field name="name">List Transaction</field>
+        <field name="model">vrental.transaction</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'draft'"
+                  decoration-info="state == 'confirm'"
+                  decoration-warning="state == 'rented'"
+                  decoration-muted="state == 'cancelled'"
+                  decoration-primary="state == 'done'">
+               <field name="name"/>
+               <field name="customer_name"/>
+               <field name="id_member"/>
+               <field name="start_date"/>
+               <field name="end_date"/>
+               <field name="rent_day"/>
+               <field name="total_cost"/>     
+               <field name="state" 
+                  decoration-success="state == 'draft'"
+                  decoration-info="state == 'confirm'"
+                  decoration-warning="state == 'rented'"
+                  decoration-muted="state == 'cancelled'"
+                  decoration-primary="state == 'done'"
+                  widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- vrental.transaction form view -->
+    <record id="vrental_transaction_view_form" model="ir.ui.view">
+        <field name="name">Form Transaction</field>
+        <field name="model">vrental.transaction</field>
+        <field name="arch" type="xml">
+            <form string="Form Transaction">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="btn btn-primary" states="draft"/>
+                    <button name="action_rented" type="object" string="Rent VR" class="btn btn-danger" states="confirm" confirm="Are you sure want to RENTING this?"/>
+                    <button name="action_returned" type="object" string="Return VR" class="btn btn-success" states="rented"/>
+                    <button name="action_done" type="object" string="Done" class="btn btn-primary" states="returned"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="btn btn-warning" states="confirm" confirm="Are you sure want to Cancel?"/>
+                    <button name="action_draft" type="object" string="Back to Draft ke Draft" class="btn btn-danger" states="cancelled" confirm="Are you sure want to edit this?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        <field name="customer_name" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        <field name="id_member" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        <field name="start_date" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        <field name="end_date" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        <field name="rent_day" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        <field name="total_cost" attrs="{'readonly' : [('state', '!=', 'draft')]}"/> 
+                    </group>
+                    <group name="vrcatalog" string="VR Catalogue">
+                        <field name="transactiondetail_ids" attrs="{'readonly' : [('state', '!=', 'draft')]}">
+                            <tree editable='button'>
+                                <field name="vr_id"/>
+                                <field name="each_price"/>
+                                <field name="qty"/>
+                                <field name="subtotal" sum="Total"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- model.name action window -->
+    <record id="vrental_transaction_action" model="ir.actions.act_window">
+        <field name="name">Transaction</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vrental.transaction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="vrental_transaction_menu_act" 
+              name="Transaction" 
+              parent="vrental_menu_root" 
+              action="vrental_transaction_action" 
+              sequence="40"/>
+
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- transactionreport_wizard form view -->
+        <record id="transactionreport_wizard_view_form" model="ir.ui.view">
+            <field name="name">transactionreport_wizard.view_form</field>
+            <field name="model">vrental.transactionreport</field>
+            <field name="arch" type="xml">
+                <form string="transactionreport_wizard_form">
+                    <group>
+                        <field name="customer_id"/>
+                    </group>
+                    <group>
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                    </group>
+                    <footer>
+                        <button name="action_transaction_report" type="object" string="Print Report-Date" class="btn btn-warning"/>
+                        <button special="cancel" string="Cancel" class="btn btn-danger"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    
+        <!-- transactionreport_wizard_action window -->
+        <record id="transactionreport_wizard_action" model="ir.actions.act_window">
+            <field name="name">transactionreport_wizard_action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vrental.transactionreport</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref=""/>
+            <field name="target">new</field>
+        </record>
+    </data>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="transactionreport_wizard_menu_act" 
+              name="Transaction Report" 
+              parent="vrental_menu_root" 
+              action="transactionreport_wizard_action" 
+              sequence="49"/>
+</odoo>

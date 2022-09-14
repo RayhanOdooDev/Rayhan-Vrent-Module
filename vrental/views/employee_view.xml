@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- vrental.employee tree view -->
+    <record id="vrental_employee_view_tree" model="ir.ui.view">
+        <field name="name">List Employee</field>
+        <field name="model">vrental.employee</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="address"/>
+                <field name="phone_number"/>
+                <field name="job"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- vrental.employee form view -->
+    <record id="vrental_employee_view_form" model="ir.ui.view">
+        <field name="name">Form Employee</field>
+        <field name="model">vrental.employee</field>
+        <field name="arch" type="xml">
+            <form string="Name">
+                <sheet>
+                    <group name="name" string="Name">
+                        <field name="name"/>
+                    </group>
+                    <group name="data" string="Data">
+                        <field name="address"/>
+                        <field name="phone_number"/>
+                        <field name="job"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <!-- vrental.employee action window -->
+    <record id="vrental_employee_action" model="ir.actions.act_window">
+        <field name="name">Employee</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vrental.employee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="rvrental_employee_menu_act" 
+              name="Employee" 
+              parent="vrental_person_menu_categ" 
+              action="vrental_employee_action" 
+              sequence="10"/>
+
+</odoo>

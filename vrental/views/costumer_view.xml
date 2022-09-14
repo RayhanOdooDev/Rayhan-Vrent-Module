@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- vrental.customer tree view -->
+    <record id="vrental_customer_view_tree" model="ir.ui.view">
+        <field name="name">List Customer</field>
+        <field name="model">vrental.customer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="id_member"/>
+                <field name="name"/>
+                <field name="address"/>
+                <field name="phone_number"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- vrental.customer form view -->
+    <record id="vrental_customer_view_form" model="ir.ui.view">
+        <field name="name">Form Customer</field>
+        <field name="model">vrental.customer</field>
+        <field name="arch" type="xml">
+            <form string="Name">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="avatar" widget="image"/>
+                        </group>
+                        <group name="name" string="Name">
+                            <field name="name"/>
+                            <field name="id_member"/>
+                        </group>
+                    </group>
+                    <group name="data" string="Data">
+                        <field name="address"/>
+                        <field name="phone_number"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <!-- vrental.customer action window -->
+    <record id="vrental_customer_action" model="ir.actions.act_window">
+        <field name="name">Customer</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vrental.customer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="vrental_customer_menu_act" 
+              name="Customer" 
+              parent="vrental_person_menu_categ" 
+              action="vrental_customer_action" 
+              sequence="20"/>
+
+</odoo>

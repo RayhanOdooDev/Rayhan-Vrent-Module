@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="report_transaction_xlsx" model="ir.actions.report">
+        <field name="name">Export Excel</field>
+        <field name="model">vrental.transaction</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">vrental.report_transaction_xlsx</field>
+        <field name="report_file">vrental.report_transaction_xlsx</field>
+        <field name="binding_model_id" ref="model_vrental_transaction"/>
+        <field name="binding_type">report</field>
+    </record>  
+
+
+    <record id="report_transaction_pdf" model="ir.actions.report">
+        <field name="name">Print PDF Invoice</field>
+        <field name="model">vrental.transaction</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">vrental.report_transaction_pdf</field>
+        <field name="report_file">vrental.report_transaction_pdf</field>
+        <field name="binding_model_id" ref="model_vrental_transaction"/>
+        <field name="binding_type">report</field>
+    </record>  
+
+    <record id="wizard_transactionreport_pdf" model="ir.actions.report">
+        <field name="name">Print Range Invoice</field>
+        <field name="model">vrental.transactionreport</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">vrental.wizard_report_transactionreport_pdf_tmp</field>
+        <field name="report_file">vrental.wizard_report_transactionreport_pdf_tmp</field>
+        <field name="binding_model_id" ref="model_vrental_transactionreport"/>
+        <field name="binding_type">report</field>
+    </record>  
+</odoo>

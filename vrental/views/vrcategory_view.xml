@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- vrental.vrcategory tree view -->
+    <record id="vrental_vrcategory_view_tree" model="ir.ui.view">
+        <field name="name">VR Category</field>
+        <field name="model">vrental.vrcategory</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code_category"/>
+                <field name="shelf"/>
+                <field name="total_item"/>
+                <field name="vr_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+   <!-- vrental.vrcategory form view -->
+   <record id="vrental_vrcategory_view_form" model="ir.ui.view">
+    <field name="name">Form VR Category</field>
+    <field name="model">vrental.vrcategory</field>
+    <field name="arch" type="xml">
+        <form string="VR Category">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code_category"/>
+                </group>
+                <group name="shelf" string="Shelf Stored">
+                    <field name="shelf"/>
+                    <field name="vr_ids" 
+                    readonly="1"
+                    />
+                </group>
+            </sheet>
+        </form>
+    </field>
+   </record>
+
+    <!-- vrental.vrcategory action window -->
+    <record id="vrental_vrcategory_action" model="ir.actions.act_window">
+        <field name="name">VR Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vrental.vrcategory</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="vrental_vrcategory_menu_act" 
+              name="VR Category" 
+              parent="vrental_vr_menu_categ" 
+              action="vrental_vrcategory_action" 
+              sequence="20"/>
+
+</odoo>
